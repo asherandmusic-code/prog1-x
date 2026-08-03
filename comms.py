@@ -25,10 +25,10 @@ class calc():
             return a
 
         elif ab == 3:#expression print
-            print(a)
+            print("\n",a,"\n")
 
     def mem():
-        print("MemStore Calculator")
+        print("\nMemStore Calculator\n")
         i = True
         
         x = float(input("Enter num:"))
@@ -48,7 +48,7 @@ class calc():
                 break
 
     def stand():
-        print("Standard Calculator")
+        print("\nStandard Calculator")
         i = True
         
         while i == True:
@@ -58,6 +58,12 @@ class calc():
             
             calc_history.append(calc.func(x,f,y,2))
             calc.func(x,f,y,3)
+
+            cont = input("Continue:")
+            if cont == "":
+                continue
+            elif cont == "x":
+                break
             
 #Pre-define
 
@@ -65,11 +71,32 @@ class calc():
         
 def calculator(ms=None):
     if ms == None:
-        mc = int(input("MemStore(1) or Standard(0)"))
+        mc = int(input("\nMemStore(1) or Standard(0):"))
+
+        if mc == 1:
+            calc.mem()
+
+        elif mc == 0:
+            calc.stand()
 
     elif ms == "mem":
         calc.mem()
 
     elif ms == "sta":
         calc.stand()
-    
+
+    print("\nAll calculations:")
+    for i in calc_history:
+        print(i,"\n")
+
+def help():
+    print('''
+Available commands:
+help      - shows all available commands
+end       - ends program
+time      - shows current time
+calc      - opens calculator
+    /mem  - MemStore
+    /sta  - Standard
+''')
+

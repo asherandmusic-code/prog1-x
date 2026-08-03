@@ -21,25 +21,41 @@ password = str(input("Password:"))
 #-----Log-In-----
 
 
-if mt == "" and user == "MoonBeatsxo" and password == "314159" :
+if mt == "" and user == "SunxMoon" and password == "1945" :
 
-    print(f"Welcome {User}")
+    print(f"\nWelcome {user}")
 
     def c():
         commands = {
-            "help" : "help"
+            "help" : comms.help,
+            "calc" : comms.calculator,
+            "calc/mem" : lambda : comms.calculator(ms="mem"),
+            "calc/sta" : lambda : comms.calculator(ms="sta")
                     }
 
         while i == True:
-            c = str(input("c/"))
+            cmd = str(input("c/"))
 
-            if c in commands:
-                comms.commands[c]()
+            if cmd in commands:
+                commands[cmd]()
+                
+            elif cmd == "end":
+                print("Thanks for using prog1")
+                break
+
+            elif cmd == "time":
+                print("\n",datetime.now().strftime("%Y-%m-%d %H:%M:%S"),"\n")
+          
+            elif cmd not in commands:
+                print("\nCommand not available...Try again.\n") 
                     
     fxc = str(input("File(f) or Command line(c):"))
 
     if fxc == "f":
-        print("In progress - redirect to Command line")
-                          
+        print("\nIn progress - redirect to Command line\n")
+        c()
+
+    elif fxc == "c":
+        c()
         
     
