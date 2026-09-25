@@ -1,5 +1,8 @@
+#var-init
 calc_history = []
-#Pre-define
+#var-init
+
+#support-functions
 class calc():
     def func(x,f,y,ab):
         if f == 1:  #+
@@ -64,12 +67,11 @@ class calc():
                 continue
             elif cont == "x":
                 break
-            
-#Pre-define
+#support-functions
 
-#Comms functions
-        
+#main-function
 def calculator(ms=None):
+    
     if ms == None:
         mc = int(input("\nMemStore(1) or Standard(0):"))
 
@@ -89,14 +91,24 @@ def calculator(ms=None):
     for i in calc_history:
         print(i,"\n")
 
-def help():
-    print('''
-Available commands:
-help      - shows all available commands
-end       - ends program
-time      - shows current time
-calc      - opens calculator
-    /mem  - MemStore
-    /sta  - Standard
-''')
+def calc_hist():
+    print("\nAll calculations:")
+    for i in calc_history:
+        print(i,"\n")
+#main-function
 
+#call-dictionary
+plug = {
+    "desc": '''calc           - opens calculator
+    /mem       - MemStore
+    /sta       - Standard
+    /history   - output calculator history''',
+
+    "comms": {
+        "calc": calculator,
+        "calc/mem": lambda: calculator(ms="mem"),
+        "calc/sta": lambda: calculator(ms="sta"),
+        "calc/history": calc_hist
+    }
+}
+#call-dictionary
