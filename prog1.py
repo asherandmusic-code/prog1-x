@@ -10,7 +10,6 @@ import comms
 #-----Variable-Initialisation-----
 
 log_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-i = True
 
 #-----Variable-Initialisation-----
 
@@ -30,10 +29,12 @@ if mt == "" and user == "SunxMoon" and password == "1945" :
             "help" : comms.help,
             "calc" : comms.calculator,
             "calc/mem" : lambda : comms.calculator(ms="mem"),
-            "calc/sta" : lambda : comms.calculator(ms="sta")
+            "calc/sta" : lambda : comms.calculator(ms="sta"),
+            "calc/history":comms.calc_hist,
+            "timer":comms.timer
                     }
 
-        while i == True:
+        while True:
             cmd = str(input("c/"))
 
             if cmd in commands:
@@ -45,6 +46,9 @@ if mt == "" and user == "SunxMoon" and password == "1945" :
 
             elif cmd == "time":
                 print("\n",datetime.now().strftime("%Y-%m-%d %H:%M:%S"),"\n")
+
+            elif cmd == "clear":
+                print("\n"*25)
           
             elif cmd not in commands:
                 print("\nCommand not available...Try again.\n") 

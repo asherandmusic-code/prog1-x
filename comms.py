@@ -1,4 +1,9 @@
+from pathlib import Path
+import winsound
+import time
+
 calc_history = []
+
 #Pre-define
 class calc():
     def func(x,f,y,ab):
@@ -73,30 +78,43 @@ def calculator(ms=None):
     if ms == None:
         mc = int(input("\nMemStore(1) or Standard(0):"))
 
-        if mc == 1:
-            calc.mem()
-
-        elif mc == 0:
-            calc.stand()
-
-    elif ms == "mem":
+    if ms == "mem" or mc == 1:
         calc.mem()
 
-    elif ms == "sta":
+    elif ms == "sta" or mc == 0:
         calc.stand()
 
+    calc_hist()
+
+def calc_hist():
     print("\nAll calculations:")
     for i in calc_history:
         print(i,"\n")
 
+def timer():
+    SOUND = Path(__file__).parent / "t.wav"
+    x = int(input("Enter seconds:"))
+    time.sleep(x)
+
+    winsound.PlaySound(
+        str(SOUND),
+        winsound.SND_FILENAME | winsound.SND_ASYNC
+    )
+
+    input("dismiss:")
+    winsound.PlaySound(None, 0)
+
 def help():
     print('''
 Available commands:
-help      - shows all available commands
-end       - ends program
-time      - shows current time
-calc      - opens calculator
-    /mem  - MemStore
-    /sta  - Standard
+help           - shows all available commands
+end            - ends program
+time           - shows current time
+clear          - clears command line
+calc           - opens calculator
+    /mem       - MemStore
+    /sta       - Standard
+    /history   - output calculator history
+timer          - simple tune-playing timer
 ''')
 
